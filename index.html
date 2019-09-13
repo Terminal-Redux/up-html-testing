@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>up-mockup</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/4.3.1/litera/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/styles.min.css">
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">-->
+
+    <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css" type="text/css">
+    <link href="http://db.onlinewebfonts.com/c/c899a514ac9f5ec0cf067ce7093a087f?family=Trasandina" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="assets/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <script src="https://kit.fontawesome.com/c3acc1648f.js"></script>
+    <script src="node_modules/chart.js/dist/Chart.js"></script>
+    <style>
+        .map {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+    <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md shadow navigation-clean" id="main-nav">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">GeoPortal</a>
+            <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item" role="presentation"><a class="nav-link text-uppercase text-muted" href="my-data.html">My data</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link text-uppercase text-muted" href="#">tutorials</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link text-uppercase text-dark" href="#">Logout</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#"><i
+                                class="fa fa-globe-americas"></i></a></li>
+                    <li class="dropdown nav-item"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Dropdown </a>
+                        <div class="dropdown-menu" role="menu">
+                            <ul class="list-inline">
+                                <li class="list-inline-item"><img src="assets/img/logo1.PNG" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+                                </li>
+                                <li class="list-inline-item"><img src="assets/img/logo2.PNG" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+                                </li>
+                            </ul>
+                            <ul class="list-inline">
+                                <li class="list-inline-item"><img src="assets/img/logo3.PNG" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""></li>
+                                <li class="list-inline-item"><img src="assets/img/logo4.PNG" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid" id="main">
+        <div class="row h-100">
+            <div class="col-md-3 shown" id="layer-col">
+                <section>
+                    <form>
+                        <div class="form-group">
+                            <label class="text-uppercase" for="urban-city">Select a City</label>
+                            <select class="form-control form-control-sm" name="urban-city" id="urban-city">
+                                    <optgroup label="This is a group">
+                                        <option value="12" selected>This is item 1</option>
+                                        <option value="13">This is item 2</option>
+                                        <option value="14">This is item 3</option>
+                                    </optgroup>
+                                </select>
+                        </div>
+                        <hr />
+                        <div class="input-group">
+
+                            <input id="up-search" class="form-control form-control-sm" type="text" placeholder="Search" aria-label="Search">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-search text-white"
+                                        aria-hidden="true"></i></span>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+                <div class="collapse-container">
+                    <div class="row mt-2" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-1" href="#collapse-1">
+                        <h6 class="col-md-10"><i class="fa fa-layer-group"></i> General Data</h6>
+                        <span class="col-md-2"><i id="collapse-1-icon" class="fas fa-angle-down"></i></span>
+                    </div>
+                    <div class="collapse" id="collapse-1">
+                        <div class="data-box">
+                            <div class="form-row ">
+                                <div class="col-md-10">
+                                    <div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" id="formCheck-1" /><label class="custom-control-label" for="formCheck-1"><i
+                                                class="fas fa-database"></i> Metro area boundaries</label></div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                                        <label class="custom-control-label" for="customSwitch1"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row ">
+                                <div class="col-md-10">
+                                    <div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" id="formCheck-2" /><label class="custom-control-label" for="formCheck-2"><i
+                                                class="fas fa-link"></i> Base footprint</label></div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" id="customSwitch2">
+                                        <label class="custom-control-label" for="customSwitch2"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row ">
+                                <div class="col-md-10">
+                                    <div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" id="formCheck-3" /><label class="custom-control-label" for="formCheck-3"><i
+                                                class="fas fa-database"></i> Urban footprint</label></div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" id="customSwitch3">
+                                        <label class="custom-control-label" for="customSwitch3"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row ">
+                                <div class="col-md-10">
+                                    <div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" id="formCheck-4" /><label class="custom-control-label" for="formCheck-4"><i
+                                                class="fas fa-link"></i> Elementary schools</label></div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" id="customSwitch4">
+                                        <label class="custom-control-label" for="customSwitch4"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row ">
+                                <div class="col-md-10">
+                                    <div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" id="formCheck-5" /><label class="custom-control-label" for="formCheck-5"><i
+                                                class="fas fa-random"></i> Health</label></div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" id="customSwitch5">
+                                        <label class="custom-control-label" for="customSwitch5"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse-container">
+                    <div class="row mt-2" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-2" href="#collapse-2">
+                        <h6 class="col-md-10"><i class="fa fa-layer-group"></i> My Data</h6>
+                        <span class="col-md-2"><i id="collapse-2-icon" class="fas fa-angle-down"></i></span>
+                    </div>
+                    <div class="collapse" id="collapse-2">
+                        <div class="data-box">
+                            <p>Collapse content.</p>
+                            <div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" id="formCheck-6" /><label class="custom-control-label" for="formCheck-6"><i class="fas fa-plus"></i> Add
+                                    data</label></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="project-status" class="pl-4 pb-4">
+                    <div class="row">
+                        <div class="form-inline">
+                            <button type="button" class="btn btn-primary text-uppercase"><i class="fas fa-save    "> save project</i></button>
+                            <div class="form-group">
+                                <div class="custom-control custom-switch offset-md-10">
+                                    <input type="checkbox" class="custom-control-input" id="customSwitch6">
+
+                                    <label class="custom-control-label" for="customSwitch6">Edit</label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div id="current-status" class="row">
+                        <div class="led-green mr-4"></div>
+                        <div id="#status-text" class="pb-2">
+                            <small>No errors</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8" id="map-container">
+
+                <div id="map" class="map">
+
+                </div>
+                <script type="text/javascript">
+                    var map = new ol.Map({
+                        target: 'map',
+                        layers: [
+                            new ol.layer.Tile({
+                                source: new ol.source.OSM()
+                            })
+                        ],
+                        view: new ol.View({
+                            center: ol.proj.fromLonLat([37.41, 8.82]),
+                            zoom: 4
+                        })
+                    });
+                </script>
+
+            </div>
+            <div class="col-md-1 text-center shown" id="tools-col">
+                <ul class="btn-list list-unstyled">
+                    <li>
+                        <button id="up-settings-btn" class="btn btn-primary active" data-toggle="modal" data-target="#up_settings" type="button">
+                            <i class="fas fa-wrench" ></i>
+                        </button>
+                    </li>
+                    <hr style="color: #4B565F;background-color: #4B565F;" />
+                    <li>
+                        <button class="btn btn-primary mb-2" data-toggle="modal" data-target="#up_add" type="button">
+                        <i class="fas fa-plus" ></i>
+                    </button>
+                    </li>
+                    <li>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#up_edit" type="button">
+                        <i class="fas fa-draw-polygon" ></i>
+                    </button>
+                    </li>
+                    <hr style="color: #4B565F;background-color: #4B565F;" />
+                    <li>
+                        <button class="btn btn-primary mb-2" data-toggle="modal" data-target="#up_analysis" type="button">
+                        <i class="fas fa-globe" ></i>
+                    </button>
+                    </li>
+                    <li>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#up_symbology" type="button">
+                        <i class="fas fa-paint-brush" ></i>
+                    </button>
+                    </li>
+                    <hr style="color: #4B565F;background-color: #4B565F;" />
+                    <li>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#up_about" type="button">
+                        <i class="fas fa-question-circle" ></i>
+                    </button>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal fade" id="up_settings" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content gp_modal container-fluid">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Settings</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <i class="fas fa-angle-double-right    "></i>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h6 class="text-uppercase">create scenario</h6>
+                            <hr class="gp_orange">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="form-inline">
+                                        <input type="text" class="form-control form-control-sm col-md-3" name="scenario-name" id="scenario-name" aria-describedby="helpId" placeholder="Name">
+                                        <select class="form-control form-control-sm col-md-6" name="" id="">
+                                            <option selected><i class="fas fa-plus"></i> Add indicators</option>
+                                            <option></option>
+                                            <option></option>
+                                        </select>
+                                        <input type="text" class="form-control form-control-sm col-md-3" placeholder="My Data" data-toggle="tooltip" data-placement="top" title="Please indicate where the scenario will be moved to">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <h6 class="text-uppercase">create scenario</h6>
+                            <hr class="gp_orange">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <span class="badge badge-pill badge-dark col-md-3">Scenario 1</span>
+                                    <span class="badge badge-pill badge-dark col-md-3">Scenario 2</span>
+                                    <span class="badge badge-pill badge-dark col-md-3">Scenario 3</span>
+                                    <span class="badge badge-pill badge-dark col-md-3">Scenario 4</span>
+                                </div>
+                                <div class="row">
+                                    <button class="btn btn-dark mx-auto text-uppercase"><i class="fas fa-calculator    "></i>
+                                        Calculate</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <h6 class="text-uppercase">Results</h6>
+                            <hr class="gp_orange">
+                            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="fas fa-table    "></i></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><i
+                                            class="fas fa-chart-line    "></i></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false"><i
+                                            class="fas fa-divide    "></i></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="etc-tab" data-toggle="tab" href="#etc" role="tab" aria-controls="etc" aria-selected="false"><i class="fas fa-leaf    "></i></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="add-tab" data-toggle="tab" href="#add" role="tab" aria-controls="add" aria-selected="false"><i
+                                            class="fas fa-question-circle    "></i></a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active container" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                    <table class="table">
+                                        <thead>
+                                            <tr class="text-center">
+                                                <th scope="col"></th>
+                                                <th scope="col" class="scenario-base">Scenario 1</th>
+                                                <th scope="col" class="scenario-active">Scenario 2</th>
+                                                <th scope="col" class="scenario-inactive">Scenario 3</th>
+                                                <th scope="col" class="scenario-inactive">Scenario 4</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="table-title  results-table">
+                                            <tr class="">
+                                                <th scope="row">
+                                                    <p>School proximity</p>
+                                                    <small class="measure">km2</small>
+                                                </th>
+                                                <td class="text-center align-middle">0</td>
+                                                <td class="text-center align-middle">10</td>
+                                                <td class="text-center align-middle"></td>
+                                                <td class="text-center align-middle"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <p>Infill area</p>
+                                                    <small class="measure">km2</small>
+                                                </th>
+                                                <td class="text-center align-middle">0</td>
+                                                <td class="text-center align-middle">15</td>
+                                                <td class="text-center align-middle"></td>
+                                                <td class="text-center align-middle"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <p>Population density</p>
+                                                    <small class="measure">pop/km2</small>
+                                                </th>
+                                                <td class="text-center align-middle">900</td>
+                                                <td class="text-center align-middle">2500</td>
+                                                <td class="text-center align-middle"></td>
+                                                <td class="text-center align-middle"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <p>Infrastructure costs</p>
+                                                    <small class="measure">Million USD</small>
+                                                </th>
+                                                <td class="text-center align-middle">100</td>
+                                                <td class="text-center align-middle">80</td>
+                                                <td class="text-center align-middle"></td>
+                                                <td class="text-center align-middle"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                    <h5 class="text-uppercase pt-2 results-title">chart</h5>
+                                    <hr class="gp_orange">
+                                    <canvas id="myChart" width="300" height="300"></canvas>
+                                </div>
+                                <div class="tab-pane fade container" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                    <div class="form-inline pt-3 mb-2">
+                                        <div class="form-group">
+                                            <label for="base-scenario" class="mr-3">
+                                                <h6 class="table-title">Select base scenario</h6>
+                                            </label>
+                                            <select name="base-scenario" id="base-scenario" class="form-control-sm">
+                                                <option value="">Scenario 1</option>
+                                                <option value="">Scenario 2</option>
+                                                <option value="">Scenario 3</option>
+                                                <option value="">Scenario 4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <table class="table">
+                                        <thead>
+                                            <tr class="text-center">
+                                                <th scope="col"></th>
+                                                <th scope="col" class="scenario-active">Scenario 2</th>
+                                                <th scope="col" class="scenario-inactive">Scenario 3</th>
+                                                <th scope="col" class="scenario-inactive">Scenario 4</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="table-title  results-table">
+                                            <tr class="">
+                                                <th scope="row">School proximity</th>
+                                                <td class="positive-result text-center">-20%</td>
+                                                <td class="text-center"></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Infill area</th>
+                                                <td class="text-center">40%</td>
+                                                <td class="text-center"></td>
+                                                <td class="text-center"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Population density</th>
+                                                <td class="text-center">10%</td>
+                                                <td class="text-center"></td>
+                                                <td class="text-center"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Infrastructure cost</th>
+                                                <td class="positive-result text-center">-20%</td>
+                                                <td class="text-center"></td>
+                                                <td class="text-center"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane fade container" id="etc" role="tabpanel" aria-labelledby="etc-tab">
+                                    <h5 class="text-uppercase pt-2 results-title">sustainable development goals</h5>
+                                    <hr class="gp_orange">
+                                    <h6 class="table-title">SDG 9 - Industry, innovation & infrastructure</h6>
+                                    <table class="table results-text">
+                                        <tbody>
+                                            <tr>
+                                                <td>Proximity to roads</td>
+                                                <td class="text-right"><span class="highlight-results">48%</span> of population
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Proximity to WIFI hotspots</td>
+                                                <td class="text-right"><span class="highlight-results">58%</span> of population
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <hr class="gp_orange_large">
+                                    <h6 class="table-title">SDG 11 - Sustainable cities & communities</h6>
+                                    <table class="table results-text">
+                                        <tbody>
+                                            <tr>
+                                                <td>Proximity to roads</td>
+                                                <td class="text-right"><span class="highlight-results">48%</span> of population
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Proximity to WIFI hotspots</td>
+                                                <td class="text-right"><span class="highlight-results">58%</span> of population
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane fade container" id="add" role="tabpanel" aria-labelledby="add-tab">
+                                    <h5 class="text-uppercase pt-2 results-title">Help</h5>
+                                    <hr class="gp_orange">
+                                    <div class="results-text ml-2 mt-2">
+                                        <p>To use this tool you must have uploaded the assumptions and criteria tables in your geoportal.</p>
+                                        <p>If you have any further questions, please visit <a href="#">urbanperformance.in</a>, where you will be able to see more information about the tool.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal fade" id="up_add" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content gp_modal">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <i class="fas fa-angle-double-right    "></i>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <button type="button" class="btn btn-primary col-md-3"><i
+                                            class="fas fa-vector-square    "></i></button>
+                                    <button type="button" class="btn btn-primary col-md-3"><i
+                                            class="fas fa-wave-square"></i></button>
+                                    <button type="button" class="btn btn-primary col-md-3"><i
+                                            class="fas fa-draw-polygon    "></i></button>
+                                    <button type="button" class="btn btn-primary col-md-3"><i
+                                            class="fas fa-save    "></i></button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal fade" id="up_edit" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content gp_modal">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Edit features</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <i class="fas fa-angle-double-right    "></i>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <button type="button" class="btn btn-primary col-md-3"><i
+                                            class="fas fa-mouse-pointer    "></i></button>
+                                    <button type="button" class="btn btn-primary col-md-3"><i
+                                            class="fas fa-wave-square"></i></button>
+                                    <button type="button" class="btn btn-primary col-md-3"><i
+                                            class="fas fa-draw-polygon    "></i></button>
+                                    <button type="button" class="btn btn-primary col-md-3"><i
+                                            class="fas fa-save    "></i></button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal fade" id="up_analysis" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content gp_modal">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Analysis Tools</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <i class="fas fa-angle-double-right    "></i>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <small>Select an analysis tool</small>
+                                <div class="form-group">
+
+                                    <select class="form-control" name="at-tool" id="at-tool">
+                                        <option selected>Clip</option>
+                                        <option></option>
+                                        <option></option>
+                                    </select>
+                                </div>
+                                <p><small>Buffer</small></p>
+                                <p><small>Merge</small></p>
+                                <p><small>Intersect</small></p>
+                                <p><small>Union</small></p>
+                                <p><small>Dissolve</small></p>
+                                <hr>
+                                <p><small>To raster</small></p>
+                                <p><small>To point</small></p>
+                                <hr>
+                                <p><small>Overlay</small></p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal fade" id="up_symbology" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content gp_modal">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Symbology</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <i class="fas fa-angle-double-right    "></i>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <div class="form-group">
+                                    <label for="symb-layer"><small>Select layer</small></label>
+                                    <select class="form-control form-control-sm" name="symb-layer" id="symb-layer">
+                                        <option selected>Layer</option>
+                                        <option></option>
+                                        <option></option>
+                                    </select>
+                                </div>
+                                <div class="form-row">
+                                    <img src="assets/img/geoportal-layers.PNG" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|} col-md-12" alt="">
+                                </div>
+                                <hr>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="symb-column"><small>Select column</small></label>
+                                        <select class="form-control form-control-sm" name="symb-column" id="symb-column">
+                                            <option selected>Column</option>
+                                            <option></option>
+                                            <option></option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="symb-cat"><small>Category</small></label>
+                                        <input type="color" class="form-control form-control-sm" name="symb-cat" id="symb-cat" value="#75B82C">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <div class="form-group ">
+                                            <label for="symb-quant"><small>Quantities</small></label>
+                                            <input class="form-control form-control-sm" type="number" name="symb-quant" id="symb-quant" value="5">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="symb-cat2"></label>
+                                        <input type="color" class="form-control form-control-sm" name="symb-cat2" id="symb-cat2" value="#DECBD0">
+                                    </div>
+
+                                </div>
+                                <hr>
+                                <div class="form-row">
+                                    <small class="col-md-4">Symbology</small>
+                                    <div class="col-md-8">
+                                        <span class="badge badge-dark"><i class="far fa-circle    "></i></span>
+                                        <span class="badge badge-dark"><i class="far fa-square    "></i></span>
+                                        <span class="badge badge-dark"><i class="far fa-triangle    "></i></span>
+                                        <span class="badge badge-dark"><i class="far fa-hexagon    "></i></span>
+                                        <span class="badge badge-dark"><i class="far fa-star    "></i></span>
+                                        <span class="badge badge-dark"><i class="fas fa-plus    "></i></span>
+                                    </div>
+                                </div>
+                                <hr>
+
+                                <div class="form-group row">
+                                    <label for="symb-label" class="col-md-3 col-form-label"><small>Label
+                                            field</small></label>
+                                    <div class="col-md-9">
+                                        <select class="form-control form-control-sm" name="symb-label" id="symb-label">
+                                            <option selected>Name</option>
+                                            <option></option>
+                                            <option></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <select class="form-control form-control-sm" name="" id="">
+                                            <option></option>
+                                            <option selected>Helvetica</option>
+                                            <option></option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <input class="form-control form-control-sm" type="number" name="" id="" min="0" value="7">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <span class="badge badge-dark"><i class="fas fa-bold    "></i></span>
+                                        <span class="badge badge-dark"><i class="fas fa-italic    "></i></span>
+                                        <span class="badge badge-dark"><i class="fa fa-underline"></i></span>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <input class="form-control form-control-sm" type="color" name="" id="">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal fade" id="up_about" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content gp_modal">
+                        <div class="modal-header">
+                            <h5 class="modal-title">About</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <i class="fas fa-angle-double-right    "></i>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <img src="assets/img/geoportal-about.PNG" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|} col-md-12" alt="About the Geoportal">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="slide-btn-hide" id="btn-layers">
+            <button type="button" class="btn btn-primary">
+                                    <i class="fas fa-angle-left    "></i>
+                                </button>
+        </div>
+        <div class="slide-btn-hide" id="btn-tools">
+            <button type="button" class="btn btn-primary">
+                                    <i class="fas fa-angle-right    "></i>
+                                </button>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/jquery-ui.min.js"></script>
+    <script src="assets/js/utils.js"></script>
+    <script>
+        Chart.pluginService.register({
+            beforeDraw: function(chart, easing) {
+                if (chart.config.options.chartArea && chart.config.options.chartArea.backgroundColor) {
+                    var ctx = chart.chart.ctx;
+                    var chartArea = chart.chartArea;
+
+                    ctx.save();
+                    ctx.fillStyle = chart.config.options.chartArea.backgroundColor;
+                    ctx.fillRect(chartArea.left, chartArea.top, chartArea.right - chartArea.left, chartArea.bottom - chartArea.top);
+                    ctx.restore();
+                }
+            }
+        });
+
+        var randomScalingFactor = function() {
+            return Math.round(Math.random() * 100);
+        };
+
+        var color = Chart.helpers.color;
+        var config = {
+            type: 'radar',
+            data: {
+                labels: [
+                    'Indicator 1', 'Indicator 2', 'Indicator 3', 'Indicator 4', 'Indicator 5', 'Indicator 6', 'Indicator 7',
+                    'Indicator 8', 'Indicator 9', 'Indicator 10'
+                ],
+                datasets: [{
+                    label: 'Base',
+                    borderColor: '#509990',
+                    pointBackgroundColor: '#509990',
+                    fill: false,
+                    data: [
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor()
+                    ]
+                }, {
+                    label: 'Plan',
+                    borderColor: '#FF7D7B',
+                    pointBackgroundColor: '#FF7D7B',
+                    fill: false,
+                    data: [
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor()
+                    ]
+                }]
+            },
+            options: {
+                legend: {
+                    position: 'top',
+                    labels: {
+                        fontColor: '#ffffff'
+                    }
+                },
+                title: {
+                    display: false,
+                    text: 'Chart.js Radar Chart'
+                },
+                scale: {
+                    gridLines: {
+                        color: "#ffffff",
+                        lineWidth: 0.2
+                    },
+                    angleLines: {
+                        display: false
+                    },
+                    ticks: {
+                        beginAtZero: true,
+                        min: 0,
+                        max: 100,
+                        stepSize: 100,
+                        display: false
+                    },
+                    pointLabels: {
+                        fontSize: 11,
+                        fontColor: '#ffffff'
+                    }
+                },
+                chartArea: {
+                    backgroundColor: '#3C4850'
+                }
+            }
+        };
+
+        window.onload = function() {
+            window.myRadar = new Chart(document.getElementById('myChart'), config);
+        };
+    </script>
+</body>
+
+</html>

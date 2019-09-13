@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/4.3.1/litera/bootstrap.min.css">
+    <link href="http://db.onlinewebfonts.com/c/c899a514ac9f5ec0cf067ce7093a087f?family=Trasandina" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="assets/css/styles.min.css">
+    <script src="https://kit.fontawesome.com/c3acc1648f.js"></script>
+    <style>
+        .modal-backdrop {
+            opacity: 0 !important;
+        }
+        
+        .gp_modal {
+            background: #343E46;
+            color: #FEFEFE;
+            height: 100%;
+        }
+        
+        #up_settings .gp_modal {
+            background: #273038;
+        }
+        
+        .gp_modal .badge-dark {
+            background: #273038
+        }
+        
+        #up_settings .gp_modal .badge-dark {
+            background: #343E46;
+            color: #5A6C79;
+        }
+        
+        .gp_modal hr.gp_orange {
+            border-color: #BF6C6B;
+            width: 8%;
+            margin-left: 0%;
+        }
+        
+        .gp_modal .form-control-sm,
+        .gp_modal .form-control,
+        .gp_modal ::placeholder {
+            background: #414B54;
+            color: #CACCCF;
+        }
+        
+        .gp_modal .modal-header,
+        .gp_modal .modal-footer {
+            border-color: #313C45;
+        }
+        /*.gp_modal .nav-tabs .nav-item .active {
+            color: #BF6C6B;
+        }*/
+        
+        .gp_modal .nav-tabs .nav-item .nav-link {
+            background: #343E46;
+            color: #4B565F;
+            font-size: 2em;
+        }
+        
+        .gp_modal .nav-tabs .nav-item .active,
+        .gp_modal .tab-content .active {
+            background: #4B565F;
+            color: #BF6C6B;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#up_settings">
+      <i class="fas fa-globe    "></i>
+    </button>
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#up_add">
+        <i class="fas fa-globe    "></i>
+    </button>
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#up_edit">
+        <i class="fas fa-globe    "></i>
+    </button>
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#up_analysis">
+        <i class="fas fa-globe    "></i>
+    </button>
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#up_symbology">
+        <i class="fas fa-globe    "></i>
+    </button>
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#up_about">
+        <i class="fas fa-globe    "></i>
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="up_settings" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content gp_modal">
+                <div class="modal-header">
+                    <h5 class="modal-title">Settings</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class="fas fa-angle-double-right    "></i>
+                        </button>
+                </div>
+                <div class="modal-body">
+                    <h6 class="text-uppercase">create scenario</h6>
+                    <hr class="gp_orange">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="form-inline">
+                                <!--<label for=""></label>-->
+                                <input type="text" class="form-control-sm col-md-3" name="scenario-name" id="scenario-name" aria-describedby="helpId" placeholder="Name">
+                                <!--<small id="helpId" class="form-text text-muted">Help text</small>-->
+                                <select class="form-control-sm col-md-6" name="" id="">
+                                            <option selected><i class="fas fa-plus    "></i> Add indicators</option>
+                                            <option></option>
+                                            <option></option>
+                                    </select>
+                                <input type="text" class="form-control-sm col-md-3" name="" id="" placeholder="My Data" data-toggle="tooltip" data-placement="top" title="Please indicate where the scenario will be moved to.">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <h6 class="text-uppercase">create scenario</h6>
+                    <hr class="gp_orange">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <span class="badge badge-pill badge-dark col-md-3">Scenario 1</span>
+                            <span class="badge badge-pill badge-dark col-md-3">Scenario 2</span>
+                            <span class="badge badge-pill badge-dark col-md-3">Scenario 3</span>
+                            <span class="badge badge-pill badge-dark col-md-3">Scenario 4</span>
+                        </div>
+                        <div class="row">
+                            <button class="btn btn-dark mx-auto text-uppercase"><i class="fas fa-save    "></i> Calculate</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <h6 class="text-uppercase">Results</h6>
+                    <hr class="gp_orange">
+                    <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="fas fa-table    "></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><i class="fas fa-chart-line    "></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false"><i class="fas fa-divide    "></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="etc-tab" data-toggle="tab" href="#etc" role="tab" aria-controls="etc" aria-selected="false"><i class="fas fa-leaf    "></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="add-tab" data-toggle="tab" href="#add" role="tab" aria-controls="add" aria-selected="false"><i class="fas fa-question-circle    "></i></a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam facere ipsum sequi nostrum vitae dolorem praesentium voluptatibus, incidunt deserunt suscipit beatae placeat natus, fuga delectus accusantium ducimus, similique consectetur
+                            sunt.
+                        </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea sed quam deserunt qui culpa nulla, repellat, temporibus aliquam magnam iste, dolorem expedita molestiae quibusdam ad pariatur vel aspernatur laudantium est? Lorem, ipsum
+                            dolor sit amet consectetur adipisicing elit. Maxime debitis expedita dicta voluptas quae iste modi similique quas officiis nemo rerum non dolorum in eum laudantium quaerat, consectetur exercitationem quisquam.</div>
+                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum labore eaque inventore accusamus quo deserunt ut illum. Eum omnis reprehenderit, fugiat voluptas pariatur inventore quam accusamus, ducimus hic repudiandae saepe.</div>
+                        <div class="tab-pane fade" id="etc" role="tabpanel" aria-labelledby="etc-tab">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae explicabo odit, tempore distinctio ex enim porro aut officia magni eum provident? Soluta atque hic rerum quisquam eum voluptate dolore perspiciatis.</div>
+                        <div class="tab-pane fade" id="add" role="tabpanel" aria-labelledby="add-tab">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex eius, provident porro ea itaque mollitia vitae eos, ducimus recusandae molestiae similique nulla nisi expedita ad dolor odio atque architecto incidunt?</div>
+                    </div>
+                </div>
+                <!--<div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save</button>
+                </div>-->
+            </div>
+
+        </div>
+    </div>
+    <div class="modal fade" id="up_add" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content gp_modal">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class="fas fa-angle-double-right    "></i>
+                            </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <button type="button" class="btn btn-primary col-md-3"><i class="fas fa-vector-square    "></i></button>
+                            <button type="button" class="btn btn-primary col-md-3"><i class="fas fa-wave-square"></i></button>
+                            <button type="button" class="btn btn-primary col-md-3"><i class="fas fa-draw-polygon    "></i></button>
+                            <button type="button" class="btn btn-primary col-md-3"><i class="fas fa-save    "></i></button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal fade" id="up_edit" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content gp_modal">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit features</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <i class="fas fa-angle-double-right    "></i>
+                                </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <button type="button" class="btn btn-primary col-md-3"><i class="fas fa-vector-square    "></i></button>
+                            <button type="button" class="btn btn-primary col-md-3"><i class="fas fa-wave-square"></i></button>
+                            <button type="button" class="btn btn-primary col-md-3"><i class="fas fa-draw-polygon    "></i></button>
+                            <button type="button" class="btn btn-primary col-md-3"><i class="fas fa-save    "></i></button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal fade" id="up_analysis" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content gp_modal">
+                <div class="modal-header">
+                    <h5 class="modal-title">Analysis Tools</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <i class="fas fa-angle-double-right    "></i>
+                                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <small>Select an analysis tool</small>
+                        <div class="form-group">
+
+                            <select class="form-control" name="at-tool" id="at-tool">
+                                        <option selected>Clip</option>
+                                        <option></option>
+                                        <option></option>
+                            </select>
+                        </div>
+                        <p><small>Buffer</small></p>
+                        <p><small>Merge</small></p>
+                        <p><small>Intersect</small></p>
+                        <p><small>Union</small></p>
+                        <p><small>Dissolve</small></p>
+                        <hr>
+                        <p><small>To raster</small></p>
+                        <p><small>To point</small></p>
+                        <hr>
+                        <p><small>Overlay</small></p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal fade" id="up_symbology" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content gp_modal">
+                <div class="modal-header">
+                    <h5 class="modal-title">Symbology</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <i class="fas fa-angle-double-right    "></i>
+                                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="form-group">
+                            <label for="symb-layer"><small>Select layer</small></label>
+                            <select class="form-control" name="symb-layer" id="symb-layer">
+                                    <option selected>Layer</option>
+                                    <option></option>
+                                    <option></option>
+                                </select>
+                        </div>
+                        <div class="form-row">
+                            <img src="assets/img/geoportal-layers.PNG" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|} col-md-12" alt="">
+                        </div>
+                        <hr>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="symb-column"><small>Select column</small></label>
+                                <select class="form-control" name="symb-column" id="symb-column">
+                                                        <option selected>Column</option>
+                                                        <option></option>
+                                                        <option></option>
+                                    </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="symb-cat"><small>Category</small></label>
+                                <input type="color" class="form-control" name="symb-cat" id="symb-cat" value="#75B82C">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-inline col-md-6">
+                                <div class="form-group ">
+                                    <label for="symb-quant"><small>Quantities</small></label>
+                                    <input class="form-control" type="number" name="symb-quant" id="symb-quant" value="5">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="color" class="form-control" name="symb-cat" id="symb-cat" value="#DECBD0">
+                            </div>
+
+                        </div>
+                        <hr>
+                        <div class="form-row">
+                            <small class="col-md-4">Symbology</small>
+                            <div class="col-md-8">
+                                <span class="badge badge-dark"><i class="far fa-circle    "></i></span>
+                                <span class="badge badge-dark"><i class="far fa-square    "></i></span>
+                                <span class="badge badge-dark"><i class="far fa-triangle    "></i></span>
+                                <span class="badge badge-dark"><i class="far fa-hexagon    "></i></span>
+                                <span class="badge badge-dark"><i class="far fa-star    "></i></span>
+                                <span class="badge badge-dark"><i class="fas fa-plus    "></i></span>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="form-group row">
+                            <label for="symb-label" class="col-md-3 col-form-label"><small>Label field</small></label>
+                            <div class="col-md-9">
+                                <select class="form-control" name="symb-label" id="symb-label">
+                                            <option selected>Name</option>
+                                            <option></option>
+                                            <option></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <select class="form-control" name="" id="">
+                                  <option></option>
+                                  <option selected>Helvetica</option>
+                                  <option></option>
+                              </select>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input class="form-control" type="number" name="" id="" min="0" value="7">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <span class="badge badge-dark"><i class="fas fa-bold    "></i></span>
+                                <span class="badge badge-dark"><i class="fas fa-italic    "></i></span>
+                                <span class="badge badge-dark"><i class="fa fa-underline"></i></span>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input class="form-control" type="color" name="" id="">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal fade" id="up_about" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content gp_modal">
+                <div class="modal-header">
+                    <h5 class="modal-title">About</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <i class="fas fa-angle-double-right    "></i>
+                                        </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <img src="assets/img/geoportal-about.PNG" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|} col-md-12" alt="About the Geoportal">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/utils.js"></script>
+</body>
+
+</html>
